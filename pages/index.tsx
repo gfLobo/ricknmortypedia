@@ -29,7 +29,7 @@ export default function Home({ data }: HomeProps) {
 export const getStaticProps: GetStaticProps<HomeProps> = async (context:any) => {
   
 
-  const hostname = "https://ricknmortypedia.vercel.app/";
+  const hostname = typeof window !== 'undefined' ? window.location.origin : "https://ricknmortypedia.vercel.app/";
   const res = await fetch(`${hostname}/api/character/1`)
   const data: APIResult = await res.json()
 
