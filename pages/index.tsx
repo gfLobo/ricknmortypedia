@@ -3,14 +3,31 @@ import Head from 'next/head';
 import { Inter } from 'next/font/google';
 import HomePage from './homepage';
 import { APIResult } from '@/types/APIResult';
+import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] })
 
-interface HomeProps {
-  data: APIResult
-}
 
-export default function Home({ data }: HomeProps) {
+
+export default function Home() {
+  const [data, setData] = useState<APIResult>({
+    info: {
+      count: 0,
+      pages: 0,
+      next: null,
+      prev: null
+    },
+    results: []
+  })
+
+  useEffect(() => {
+    (async() => {
+      const res = await fetch(`${window.location.origin}/api/character/1`)
+      const getData: APIResult = await res.json()
+      setData(getData)
+    })()
+  }, [])
+  
   return (
     <>
       <Head>
@@ -20,23 +37,10 @@ export default function Home({ data }: HomeProps) {
         <link rel="icon" href="/Rick-And-Morty-Logo.png" />
       </Head>
       <main>
-        <HomePage data={data} />
+        <HomePage data={data}  />
       </main>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async (context:any) => {
-  
 
-  const hostname = typeof window !== 'undefined' ? window.location.origin : "https://ricknmortypedia.vercel.app/";
-  const res = await fetch(`${hostname}/api/character/1`)
-  const data: APIResult = await res.json()
-
-  return {
-    props: {
-      data,
-    },
-    revalidate:5
-  }
-}
