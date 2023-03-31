@@ -10,24 +10,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
-  const [data, setData] = useState<APIResult>({
-    info: {
-      count: 0,
-      pages: 0,
-      next: null,
-      prev: null
-    },
-    results: []
-  })
 
-  useEffect(() => {
-    (async() => {
-      const res = await fetch(`${window.location.origin}/api/character/1`)
-      const getData: APIResult = await res.json()
-      setData(getData)
-    })()
-  }, [])
   
+
   return (
     <>
       <Head>
@@ -37,7 +22,7 @@ export default function Home() {
         <link rel="icon" href="/Rick-And-Morty-Logo.png" />
       </Head>
       <main>
-        <HomePage data={data}  />
+        <HomePage   />
       </main>
     </>
   )

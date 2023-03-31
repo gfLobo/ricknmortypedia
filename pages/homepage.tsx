@@ -5,16 +5,22 @@ import { Filter } from '@/types/Filter';
 import { queryFilter } from '@/utils/filters';
 import { LinearProgress } from '@mui/joy';
 import { Box, Grid } from '@mui/material';
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { APIResult } from '@/types/APIResult';
 import { APIError } from '@/types/APIError';
 
-interface Props {
-  data: APIResult;
-}
 
-const HomePage: FC<Props> = ({ data }) => {
-  const [characters, setCharacters] = useState<APIResult>(data);
+const HomePage: FC<any> = () => {
+  const [characters, setCharacters] = useState<APIResult>({
+    info: {
+      count: 0,
+      pages: 0,
+      next: null,
+      prev: null
+    },
+    results: []
+  });
+  
   const [valueSearch, setValueSearch] = useState<Filter>({
     gender: undefined,
     name: undefined,
@@ -76,7 +82,13 @@ const HomePage: FC<Props> = ({ data }) => {
 
 
 
-
+  useEffect(() => {
+    (async() => {
+      const res = await fetch(`${window.location.origin}/api/character/1`)
+      const getData: APIResult = await res.json()
+      setCharacters(getData)
+    })()
+  }, [])
 
   return (
     <Box
