@@ -1,4 +1,4 @@
-# Ricknmortypedia
+# 🧪 Ricknmortypedia
 
 
 ### Tecnologias utilizadas:
