@@ -29,7 +29,7 @@ export default function CharacterCardVerse(props: CardFlip) {
                 <img
                     src={card.image}
                     loading="lazy"
-                    alt={`card ${card.id}`}
+                    alt={`${card.id} - Foto do personagem ${card.name}`}
                     width={150}
                     height={50}
                     style={{transform: "rotateY(180deg)"}}

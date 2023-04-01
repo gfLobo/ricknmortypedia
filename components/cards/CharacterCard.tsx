@@ -70,7 +70,7 @@ export default function CharacterCard(props: Character) {
               <img
                 src={props.image}
                 loading="lazy"
-                alt={`card ${props.id}`}
+                alt={`${props.id} - Foto do personagem ${props.name}`}
                 width={150}
                 height={50}
               />

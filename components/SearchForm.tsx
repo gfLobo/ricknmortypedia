@@ -135,7 +135,7 @@ export default function SearchForm({ onSearch, onChangePage, pages }: Search) {
                     shape="rounded"
                     color="primary"
                     sx={{
-                        width: "100%",
+                        width: { xs: "100%", sm: 590 },
                         backdropFilter: "blur(10px)",
                         mt: 1,
                         backgroundColor: "rgba(255,255,255,0.5)",

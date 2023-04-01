@@ -1,9 +1,6 @@
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
 import HomePage from './homepage';
-import { APIResult } from '@/types/APIResult';
-import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] })
 
